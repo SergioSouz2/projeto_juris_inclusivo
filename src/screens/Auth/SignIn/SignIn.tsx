@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Card } from "./components/Card/Card";
+import { supabase } from "../../../services/supabaseClient";
 
 export function SignInPage() {
-  const navigate = useNavigate();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const navigate = useNavigate(); // Criar o hook de navegação
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -18,11 +20,30 @@ export function SignInPage() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Aqui você pode adicionar a lógica para enviar os dados do login
-    navigate("/home");
-    console.log({ email, password });
+    try {
+      setLoading(true);
+      setErrorMessage(null);
+
+      // Login do usuário com Supabase
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        setErrorMessage(error.message);
+      } else {
+        // Redirecionar para a página home após o login bem-sucedido
+        navigate("/home");
+      }
+    } catch (error) {
+      console.error("Erro ao fazer login:", error);
+      setErrorMessage("Erro ao fazer login. Tente novamente.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

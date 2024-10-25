@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Importar o useNavigate
 import { Card } from "./components/Card/Card";
+import { supabase } from "../../../services/supabaseClient";
 
 interface FormData {
   fullName: string;
@@ -18,6 +20,10 @@ export function SignUpPage() {
     confirmPassword: "",
   });
 
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const navigate = useNavigate(); // Criar o hook de navegação
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -26,10 +32,44 @@ export function SignUpPage() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Aqui você pode adicionar a lógica para enviar os dados do formulário
-    console.log(formData);
+
+    const { fullName, phone, email, password, confirmPassword } = formData;
+
+    if (password !== confirmPassword) {
+      setErrorMessage("As senhas não coincidem");
+      return;
+    }
+
+    setLoading(true);
+    setErrorMessage(null);
+
+    // Registro do usuário com Supabase (email e senha)
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+    });
+
+    if (data?.user) {
+      // O usuário foi registrado com sucesso
+      // Inserindo os dados do perfil na tabela profiles
+      const { error: profileError } = await supabase.from("profiles").insert([
+        {
+          id: data.user.id, // ID do usuário
+          fullName: fullName,
+          phone: phone,
+          email: email,
+        },
+      ]);
+
+      if (profileError) {
+        setErrorMessage(profileError.message);
+      } else {
+        // Se os dados do perfil foram inseridos com sucesso, navegue para /home
+        navigate("/");
+      }
+    }
   };
 
   return (
@@ -44,6 +84,8 @@ export function SignUpPage() {
           onChange={handleChange}
           onSubmit={handleSubmit}
         />
+        {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+        {loading && <p>Registrando usuário...</p>}
       </div>
       <div className="bg-primary w-full h-1/2 absolute bottom-0"></div>
     </div>

@@ -2,9 +2,11 @@ import React from "react";
 
 interface SignInProps {
   email?: string;
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export function Card({ email }: SignInProps) {
+export function Card({ email, onSubmit, onChange }: SignInProps) {
   return (
     <div className="w-2/4 h-[600px]  ">
       <div className="bg-primary rounded-t-lg flex items-center justify-center">
@@ -17,13 +19,14 @@ export function Card({ email }: SignInProps) {
           Para recuperar sua senha, insira seu e-mail abaixo. Você receberá um
           link para criar uma nova senha.
         </h2>
-        <form className="w-full max-w-xs">
+        <form className="w-full max-w-xs" onSubmit={onSubmit}>
           <div className="mb-4">
             <label className="block text-gray-700 text-left">E-mail:</label>
             <input
               type="email"
               name="email"
               value={email}
+              onChange={onChange}
               placeholder="Insira seu e-mail"
               className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
               required
