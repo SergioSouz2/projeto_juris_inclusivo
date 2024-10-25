@@ -1,7 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { Card } from "./components/Card/Card";
 
 export function SignInPage() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -17,6 +21,7 @@ export function SignInPage() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Aqui você pode adicionar a lógica para enviar os dados do login
+    navigate("/home");
     console.log({ email, password });
   };
 

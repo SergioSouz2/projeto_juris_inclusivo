@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 interface SignInProps {
   email: string;
@@ -59,9 +60,11 @@ export function Card({ email, password, onChange, onSubmit }: SignInProps) {
             />
           </div>
           <div className="mb-4 flex justify-between items-center">
-            <a href="#" className="text-blue-500">
-              Esqueceu a senha?
-            </a>
+            <Link to={"/recuperar"}>
+              <a href="#" className="text-blue-500">
+                Esqueceu a senha?
+              </a>
+            </Link>
             <label className="flex items-center">
               <input type="checkbox" className="mr-2" />
               Não sou um robô
@@ -78,10 +81,12 @@ export function Card({ email, password, onChange, onSubmit }: SignInProps) {
         <div className="mt-4 mb-4">
           <span className="text-gray-600">
             Ainda não tem login?
-            <a href="#" className="text-blue-500">
-              {" "}
-              Clique aqui para se cadastrar.
-            </a>
+            <Link to={"/register"}>
+              <a href="#" className="text-blue-500">
+                {" "}
+                Clique aqui para se cadastrar.
+              </a>
+            </Link>
           </span>
         </div>
       </div>
