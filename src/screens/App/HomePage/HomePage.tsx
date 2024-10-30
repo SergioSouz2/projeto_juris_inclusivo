@@ -142,18 +142,17 @@ export function HomePage() {
               />
               <span className="text-sm text-gray01">
                 Ao clicar em cadastrar, concordo que li e aceito os
-                <a href="#" className="text-black underline">
+                <a href="" className="text-black underline">
                   {" "}
                   Termos de Uso
                 </a>
                 ,
-                <a href="#" className="text-black underline">
+                <a href="" className="text-black underline">
                   {" "}
                   Condições Gerais do Seguro
                 </a>{" "}
                 e
-                <a href="#" className="text-black underline">
-                  {" "}
+                <a href="" className="text-black underline">
                   Cobertura do produto.
                 </a>
               </span>

@@ -50,23 +50,22 @@ export function SignUpPage() {
       email,
       password,
     });
+    console.log(error);
 
     if (data?.user) {
-      // O usuário foi registrado com sucesso
-      // Inserindo os dados do perfil na tabela profiles
-      const { error: profileError } = await supabase.from("profiles").insert([
+      const { error: profileError } = await supabase.from("usuario").insert([
         {
-          id: data.user.id, // ID do usuário
+          id: data.user.id,
           fullName: fullName,
           phone: phone,
           email: email,
+          password: password,
         },
       ]);
 
       if (profileError) {
         setErrorMessage(profileError.message);
       } else {
-        // Se os dados do perfil foram inseridos com sucesso, navegue para /home
         navigate("/");
       }
     }
