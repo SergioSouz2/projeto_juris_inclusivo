@@ -10,7 +10,7 @@ interface SignInProps {
 
 export function Card({ email, password, onChange, onSubmit }: SignInProps) {
   return (
-    <div>
+    <div className="h-5/6">
       <div className="bg-primary rounded-t-lg flex items-center justify-center">
         <h1 className="text-3xl font-bold text-white mt-4 mb-4">
           JurisInclusivo

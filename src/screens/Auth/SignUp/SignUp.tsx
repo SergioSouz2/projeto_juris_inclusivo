@@ -45,12 +45,10 @@ export function SignUpPage() {
     setLoading(true);
     setErrorMessage(null);
 
-    // Registro do usuário com Supabase (email e senha)
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
     });
-    console.log(error);
 
     if (data?.user) {
       const { error: profileError } = await supabase.from("usuario").insert([

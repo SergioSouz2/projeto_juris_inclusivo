@@ -1,5 +1,9 @@
 import React from "react";
 import "./App.css";
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 import { SignInPage } from "./screens/Auth/SignIn/SignIn";
 import { SignUpPage } from "./screens/Auth/SignUp/SignUp";
 import { HomePage } from "./screens/App/HomePage/HomePage";

@@ -48,7 +48,7 @@ export function SignInPage() {
 
   return (
     <div className="flex items-center justify-center h-screen relative ">
-      <div className="flex flex-col items-center justify-center w-1/4 relative z-10 p-4">
+      <div className="flex flex-col items-center justify-center w-1/4 z-10 p-4">
         <Card
           email={email}
           password={password}
