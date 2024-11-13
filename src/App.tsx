@@ -25,7 +25,7 @@ function App() {
           <Route path="/recuperar" element={<ForgotPasswordScreen />} />
           <Route path="/topico" element={<TopicoJuridicoScreen />} />
           <Route path="/forum" element={<ForumJuridicoScreen />} />
-          <Route path="/vaga" element={<VagasScreen />} />
+          <Route path="/vagas" element={<VagasScreen />} />
           <Route path="/curso" element={<CursoScreen />} />
         </Routes>
       </BrowserRouter>

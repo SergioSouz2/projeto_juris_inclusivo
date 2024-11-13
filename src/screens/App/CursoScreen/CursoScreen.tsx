@@ -17,9 +17,6 @@ interface Course {
 export function CursoScreen() {
   const [courses, setCourses] = useState<Course[]>([]);
 
-  console.log(courses);
-
-
   const lancamentos = courses.filter((curso) => curso.categoria === "Lançamentos Gratuitos");
   const M_Lista = courses.filter((curso) => curso.categoria === "Minha Lista");
   const Ao_vivo = courses.filter((curso) => curso.categoria === "Ao vivo");
@@ -43,12 +40,16 @@ export function CursoScreen() {
 
 
   return (
-    <div className="flex flex-col">
+    <div className="w-screen overflow-x-hidden">
       <Navbar />
-      <div className="flex p-5">
-        <Menu />
-        <div className="flex-grow p-10">
-          {/* Passando os Cards para o ListaHorizontal */}
+      <div className="flex flex-wrap">
+        <div className="flex-shrink-0 w-1/4">
+          <Menu /> {/* Menu com largura fixa, ajustando para a tela */}
+        </div>
+
+
+        <div className="flex-1 w-2/3 mt-8">
+
           <h2 className="text-primary text-left mb-7 font-bold text-xl">Lançamentos Gratuitos</h2>
           <ListaHorizontal>
             {lancamentos.map((curso) => (
@@ -77,6 +78,8 @@ export function CursoScreen() {
             ))}
           </ListaHorizontal>
 
+
+
           <h2 className="text-primary text-left mb-7 font-bold text-xl">Ao vivo</h2>
           {/* Ao Vivo */}
           <ListaHorizontal>
@@ -90,7 +93,6 @@ export function CursoScreen() {
               />
             ))}
           </ListaHorizontal>
-
 
 
         </div>

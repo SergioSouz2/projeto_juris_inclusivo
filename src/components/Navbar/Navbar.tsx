@@ -30,7 +30,7 @@ export function Navbar() {
             </Link>
           </li>
           <li>
-            <Link to={"/vaga"}>
+            <Link to={"/vagas"}>
               <a
                 href="#vagas-pcd"
                 className="text-primary hover:text-primaryPurple font-bold"

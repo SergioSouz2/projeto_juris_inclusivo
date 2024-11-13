@@ -4,12 +4,8 @@ import React from "react";
 
 export function Menu() {
     return (
-        <div className="bg-gray-800 flex-shrink-0 w-[300px]  text-white p-4 h-screen">
-
+        <div className="p-7">
             <div className="mb-6">
-                <label htmlFor="search" className="block text-sm font-medium mb-2">
-                    Buscar
-                </label>
                 <input
                     id="search"
                     type="text"

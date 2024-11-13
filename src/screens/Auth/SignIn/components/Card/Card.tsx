@@ -61,9 +61,9 @@ export function Card({ email, password, onChange, onSubmit }: SignInProps) {
           </div>
           <div className="mb-4 flex justify-between items-center">
             <Link to={"/recuperar"}>
-              <a href="#" className="text-blue-500">
+              <p className="text-blue-500">
                 Esqueceu a senha?
-              </a>
+              </p>
             </Link>
             <label className="flex items-center">
               <input type="checkbox" className="mr-2" />
@@ -72,7 +72,7 @@ export function Card({ email, password, onChange, onSubmit }: SignInProps) {
           </div>
           <button
             type="submit"
-            className="bg-primaryPurple text-white py-2 rounded-md w-full hover:bg-primary transition"
+            className="bg-primary text-white py-2 rounded-md w-full hover:bg-primaryPurple transition"
           >
             Efetuar Login
           </button>
@@ -82,10 +82,10 @@ export function Card({ email, password, onChange, onSubmit }: SignInProps) {
           <span className="text-gray-600">
             Ainda não tem login?
             <Link to={"/register"}>
-              <a href="#" className="text-blue-500">
+              <p className="text-blue-500">
                 {" "}
                 Clique aqui para se cadastrar.
-              </a>
+              </p>
             </Link>
           </span>
         </div>
