@@ -14,7 +14,7 @@ export function Navbar() {
                 href="#topicos-juridicos"
                 className="text-primary hover:text-primaryPurple font-bold"
               >
-                Tópicos Jurídicos
+                Direito em Foco
               </a>
             </Link>
             ;

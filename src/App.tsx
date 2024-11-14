@@ -12,7 +12,8 @@ import { ForgotPasswordScreen } from "./screens/Auth/ForgotPasswordScreen/Forgot
 import { CursoScreen } from "./screens/App/CursoScreen/CursoScreen";
 import { VagasScreen } from "./screens/App/VagasScreen/VagasScreen";
 import { ForumJuridicoScreen } from "./screens/App/ForumJuridicoScreen/ForumJuridicoScreen";
-import { TopicoJuridicoScreen } from "./screens/App/TopicoJuridicoScreen/TopicoJuridicoScreen";
+import { DireitoFocoScreen } from "./screens/App/DireitoFocoScreen/DireitoFocoScreen";
+
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
           <Route path="/register" element={<SignUpPage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/recuperar" element={<ForgotPasswordScreen />} />
-          <Route path="/topico" element={<TopicoJuridicoScreen />} />
+          <Route path="/topico" element={<DireitoFocoScreen />} />
           <Route path="/forum" element={<ForumJuridicoScreen />} />
           <Route path="/vagas" element={<VagasScreen />} />
           <Route path="/curso" element={<CursoScreen />} />
