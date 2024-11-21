@@ -5,6 +5,7 @@ import { supabase } from "../../../services/supabaseClient";
 import { CardVagas } from "../../../components/CardVagas/CardVagas";
 import { ListaHorizontal } from "../../../components/ListaHorizontal/ListaHorizontal";
 import { CardLancamento } from "../../../components/CardLancamento/CardLancamento";
+import { Link } from "react-router-dom";
 
 
 
@@ -58,6 +59,11 @@ export function VagasScreen() {
           <h2 className="text-primary text-left mb-7 font-bold text-xl">
             {vagas.length} Vagas para PCD encontradas
           </h2>
+          <div className="flex justify-end mr-10 mb-10">
+            <button className="px-4 py-1 rounded-md border border-primary bg-primaryPurple hover:bg-primary hover:text-white text-primary">
+              <Link to="/vagas/adicionar">Adiconar</Link>
+            </button>
+          </div>
           <ListaHorizontal>
             {vagas.map((vaga) => (
               <CardLancamento

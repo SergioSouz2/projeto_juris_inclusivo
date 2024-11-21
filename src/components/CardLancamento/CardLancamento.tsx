@@ -9,7 +9,7 @@ interface CardLancamentoProps {
 
 export function CardLancamento({ title, descricao, imagem, onpres }: CardLancamentoProps) {
     return (
-        <div className=" w-[370px] h-[250px] rounded-xl relative mx-2"> {/* Adicionando margin-x para separar os itens */}
+        <div className=" w-[370px] h-[250px] rounded-xl relative mx-2 border border-primary"> {/* Adicionando margin-x para separar os itens */}
             <img src={imagem} alt={title} className="absolute rounded-xl object-cover w-full h-full" />
             <div className="absolute z-10 bottom-0 left-0 text-left p-5 w-full flex justify-between items-end flex-col">
                 <div>

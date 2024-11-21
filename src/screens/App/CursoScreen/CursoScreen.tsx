@@ -5,6 +5,8 @@ import { Menu } from "../../../components/Menu/Menu";
 import { Footer } from "../../../components/Footer/Footer";
 import { CardLancamento } from "../../../components/CardLancamento/CardLancamento";
 import { ListaHorizontal } from "../../../components/ListaHorizontal/ListaHorizontal";
+import { Link } from "react-router-dom";
+
 
 interface Course {
   id: number;
@@ -34,6 +36,10 @@ export function CursoScreen() {
     console.log("Curso selecionado");
   };
 
+
+
+
+
   useEffect(() => {
     fetchCourses();
   }, []);
@@ -51,6 +57,14 @@ export function CursoScreen() {
         <div className="flex-1 w-2/3 mt-8">
 
           <h2 className="text-primary text-left mb-7 font-bold text-xl">Lançamentos Gratuitos</h2>
+
+          <div className="flex justify-end mr-10 mb-10">
+            <button className="px-4 py-1 rounded-md border border-primary bg-primaryPurple hover:bg-primary hover:text-white text-primary">
+              <Link to="/curso/adicionar">Adiconar</Link>
+            </button>
+          </div>
+
+
           <ListaHorizontal>
             {lancamentos.map((curso) => (
               <CardLancamento

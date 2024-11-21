@@ -21,7 +21,7 @@ export const ListaHorizontal = ({ children }: ListaHorizontalProps) => {
         infinite: false, // Habilita rotação infinita
         speed: 700, // Velocidade da transição entre os slides
         slidesToShow: 2.6, // Número de slides visíveis
-        slidesToScroll: 1, // Número de slides que será rolado a cada interação
+        slidesToScroll: 3, // Número de slides que será rolado a cada interação
         centerMode: false, // Centraliza os itens no carrossel
 
 
