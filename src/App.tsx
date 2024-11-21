@@ -14,6 +14,7 @@ import { VagasScreen } from "./screens/App/VagasScreen/VagasScreen";
 import { ForumJuridicoScreen } from "./screens/App/ForumJuridicoScreen/ForumJuridicoScreen";
 import { DireitoFocoScreen } from "./screens/App/DireitoFocoScreen/DireitoFocoScreen";
 import { AddCursoScreen } from "./screens/App/AddCursoScreen/AddCursoScreen";
+import { AddVagasScreen } from "./screens/App/AddVagasScreen/AddVagasScreen";
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path="/vagas" element={<VagasScreen />} />
           <Route path="/curso" element={<CursoScreen />} />
           <Route path="/curso/adicionar" element={<AddCursoScreen />} />
+          <Route path="/vagas/adicionar" element={<AddVagasScreen />} />
 
         </Routes>
       </BrowserRouter>
