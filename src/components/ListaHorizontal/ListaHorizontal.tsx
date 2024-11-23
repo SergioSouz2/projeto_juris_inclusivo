@@ -16,12 +16,12 @@ interface ListaHorizontalProps {
 export const ListaHorizontal = ({ children }: ListaHorizontalProps) => {
     // Configurações do carrossel (Slider)
     const slickSettings = {
-        dots: false,// Exibe os pontos de navegação
+        dots: true,// Exibe os pontos de navegação
         arrows: false,
         infinite: false, // Habilita rotação infinita
         speed: 700, // Velocidade da transição entre os slides
         slidesToShow: 2.6, // Número de slides visíveis
-        slidesToScroll: 3, // Número de slides que será rolado a cada interação
+        slidesToScroll: 4, // Número de slides que será rolado a cada interação
         centerMode: false, // Centraliza os itens no carrossel
 
 

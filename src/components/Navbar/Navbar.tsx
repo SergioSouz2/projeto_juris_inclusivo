@@ -10,43 +10,39 @@ export function Navbar() {
         <ul className="hidden md:flex gap-8 text-white">
           <li>
             <Link to={"/topico"}>
-              <a
-                href="#topicos-juridicos"
+              <p
                 className="text-primary hover:text-primaryPurple font-bold"
               >
                 Direito em Foco
-              </a>
+              </p>
             </Link>
             ;
           </li>
           <li>
             <Link to={"/forum"}>
-              <a
-                href="#foruns-juridicos"
+              <p
                 className="text-primary hover:text-primaryPurple font-bold"
               >
                 Fóruns Jurídicos
-              </a>
+              </p>
             </Link>
           </li>
           <li>
             <Link to={"/vagas"}>
-              <a
-                href="#vagas-pcd"
+              <p
                 className="text-primary hover:text-primaryPurple font-bold"
               >
                 Vagas para PCD
-              </a>
+              </p>
             </Link>
           </li>
           <li>
             <Link to={"/curso"}>
-              <a
-                href="#cursos-pcd"
+              <p
                 className="text-primary hover:text-primaryPurple font-bold"
               >
                 Cursos para PCD
-              </a>
+              </p>
             </Link>
           </li>
         </ul>

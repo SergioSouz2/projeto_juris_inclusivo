@@ -1,11 +1,10 @@
 import { supabase } from './supabaseClient';
 
 
-export const AddVagas = async (formData: {
+export const AddVagasForm = async (formData: {
     title: string;
     description: string;
     category: string;
-    meta: string;
     localizacao: string;
     valor: string;
     tipo: string;
@@ -19,11 +18,10 @@ export const AddVagas = async (formData: {
             .from('vagas') // Nome da tabela no Supabase
             .insert([
                 {
+                    categoria: formData.category,
                     titulo: formData.title,
                     descricao: formData.description,
-                    categoria: formData.category,
-                    metodo: formData.meta,
-                    imagem: "https://cdn-icons-png.flaticon.com/512/1754/1754435.png",
+                    imagem: "https://gospelminas.com/wp-content/uploads/2022/08/vaga2.jpg",
                     localizacao: formData.localizacao,
                     valor: formData.valor,
                     tipo: formData.tipo,
@@ -43,3 +41,86 @@ export const AddVagas = async (formData: {
         return null;
     }
 };
+
+
+
+
+export const getAllVagas = async () => {
+    try {
+        const { data, error } = await supabase
+            .from('vagas')
+            .select('*'); // Seleciona todos os campos da tabela 'vagas'
+
+        if (error) throw error;
+
+        return data;
+    } catch (error) {
+        console.error('Erro ao buscar vagas:', error);
+        return [];
+    }
+};
+
+
+export const getVagaById = async (vagaId: number) => {
+    try {
+        const { data, error } = await supabase
+            .from('vagas')
+            .select('*')
+            .eq('id', vagaId) // Aqui você substitui 'id' pelo nome correto da sua chave primária
+            .single(); // Garante que apenas um resultado seja retornado
+
+        if (error) throw error;
+
+        return data;
+    } catch (error) {
+        console.error('Erro ao buscar vaga por ID:', error);
+        return null;
+    }
+};
+
+
+
+
+export const updateVaga = async (vagaId: number, updatedData: {
+    title?: string;
+    description?: string;
+    category?: string;
+    localizacao?: string;
+    valor?: string;
+    tipo?: string;
+    exclusividade?: string;
+    escolaridade?: string;
+    area_profissional?: string;
+}) => {
+    try {
+        const { data, error } = await supabase
+            .from('vagas')
+            .update(updatedData) // Atualiza os dados fornecidos
+            .eq('id', vagaId); // Encontra a vaga pela chave primária (ID)
+
+        if (error) throw error;
+
+        console.log('Vaga atualizada com sucesso:', data);
+        return data;
+    } catch (error) {
+        console.error('Erro ao atualizar vaga:', error);
+        return null;
+    }
+};
+
+
+
+
+export const deleteVaga = async (vagaId: string) => {
+    try {
+        const response = await supabase
+            .from('vagas')
+            .delete()
+            .eq('id', vagaId)
+    } catch (error) {
+        console.error('Erro ao deletar vaga:', error);
+        return null;
+    }
+};
+
+

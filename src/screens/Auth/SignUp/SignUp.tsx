@@ -9,46 +9,66 @@ interface FormData {
   email: string;
   password: string;
   confirmPassword: string;
+  acesso: string;
 }
 
 export function SignUpPage() {
-  const [formData, setFormData] = useState<FormData>({
-    fullName: "",
-    phone: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+  const navigate = useNavigate()
+
+  const [formData, setFormData] = useState({
+    fullName: '',
+    phone: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    accessType: 'usuario', // Tipo de acesso inicial
   });
-
+  const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-  const navigate = useNavigate(); // Criar o hook de navegação
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // Função para tratar a mudança nos campos de formulário
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
+    setFormData((prev) => ({
+      ...prev,
       [name]: value,
     }));
   };
 
+  // Função para tratar o submit do formulário
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const { fullName, phone, email, password, confirmPassword } = formData;
+    const { fullName, phone, email, password, confirmPassword, accessType } = formData;
 
+    // Verificando se as senhas coincidem
     if (password !== confirmPassword) {
       setErrorMessage("As senhas não coincidem");
       return;
     }
 
     setLoading(true);
-    setErrorMessage(null);
+    setErrorMessage(null); // Limpando a mensagem de erro
 
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password,
+    // Enviando dados de registro para o Supabase
+    const { data, error } = await await supabase.auth.signInWithPassword({
+      email: email,
+      password: password,
+
     });
+
+
+
+    setLoading(false);
+
+    if (error) {
+      setErrorMessage(error.message); // Exibindo o erro, caso ocorra
+    } else {
+      // Sucesso - Usuário foi criado com sucesso
+      console.log('Usuário criado com sucesso:', data);
+      // Aqui, você pode redirecionar o usuário ou limpar o formulário, por exemplo.
+    }
+
 
     if (data?.user) {
       const { error: profileError } = await supabase.from("usuario").insert([
@@ -58,6 +78,7 @@ export function SignUpPage() {
           phone: phone,
           email: email,
           password: password,
+          acesso: accessType
         },
       ]);
 
@@ -69,6 +90,7 @@ export function SignUpPage() {
     }
   };
 
+
   return (
     <div className="flex flex-col h-screen bg-gray-100 relative">
       <div className="flex flex-col items-center justify-center h-full relative z-10 p-4">
@@ -78,6 +100,7 @@ export function SignUpPage() {
           email={formData.email}
           password={formData.password}
           confirmPassword={formData.confirmPassword}
+          accessType={formData.accessType}
           onChange={handleChange}
           onSubmit={handleSubmit}
         />

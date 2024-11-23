@@ -13,8 +13,8 @@ export function CardLancamento({ title, descricao, imagem, onpres }: CardLancame
             <img src={imagem} alt={title} className="absolute rounded-xl object-cover w-full h-full" />
             <div className="absolute z-10 bottom-0 left-0 text-left p-5 w-full flex justify-between items-end flex-col">
                 <div>
-                    <h2 className="text-white font-bold text-xl">{title}</h2>
-                    <p className="text-white font-semibold text-[12px]">{descricao}</p>
+                    <h2 className="text-black font-bold text-xl">{title}</h2>
+                    <p className="text-black font-semibold text-[12px]">{descricao}</p>
                 </div>
                 <button
                     onClick={onpres}

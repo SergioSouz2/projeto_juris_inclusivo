@@ -6,11 +6,15 @@ import { CardVagas } from "../../../components/CardVagas/CardVagas";
 import { ListaHorizontal } from "../../../components/ListaHorizontal/ListaHorizontal";
 import { CardLancamento } from "../../../components/CardLancamento/CardLancamento";
 import { Link } from "react-router-dom";
+import useUserData from "../../../hook/useUserData";
+import { deleteVaga, getAllVagas } from "../../../services/VagasService";
+import { Alert } from "@mui/material";
+import { Footer } from "../../../components/Footer/Footer";
 
 
 
 interface VagasProps {
-  id: number;
+  id: string;
   created_at?: string;
   categoria?: string;
   titulo: string;
@@ -40,11 +44,23 @@ export function VagasScreen() {
   };
 
 
+  function onEditarClick() {
+
+  }
+
+  async function onExcluirClick(vagaId: string) {
+    const resultDel = await deleteVaga(vagaId)
+    const resultSelect = await getAllVagas()
+    setVagas(resultSelect as VagasProps[]);
+
+  }
+
   useEffect(() => {
     fetchVagas();
-    console.log(vagas + "VAGAS OK");
-
   }, []);
+
+  const { user, clearUserData } = useUserData();
+  const visible = user && user.acesso === 'administrador';
 
 
   return (
@@ -64,6 +80,8 @@ export function VagasScreen() {
               <Link to="/vagas/adicionar">Adiconar</Link>
             </button>
           </div>
+
+
           <ListaHorizontal>
             {vagas.map((vaga) => (
               <CardLancamento
@@ -82,7 +100,9 @@ export function VagasScreen() {
 
 
           {vagas.map((vaga) => (
+
             <CardVagas
+              key={vaga.id}
               titulo={vaga.titulo}
               descricao={vaga.descricao}
               imagem={vaga.imagem}
@@ -90,11 +110,16 @@ export function VagasScreen() {
               valor={vaga.valor}
               exclusividade={vaga.exclusividade}
               tipo={vaga.tipo}
+              visible={visible}
+              onEditarClick={onEditarClick}
+              onExcluirClick={() => onExcluirClick(vaga.id)}
             />
 
           ))}
+
         </div>
       </div>
+      <Footer />
     </div>
 
   );

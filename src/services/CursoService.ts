@@ -11,7 +11,7 @@ export const addFormData = async (formData: { title: string; description: string
                     descricao: formData.description,
                     categoria: formData.category,
                     metodo: formData.meta,
-                    imagem: "https://cdn-icons-png.flaticon.com/512/1754/1754435.png"
+                    imagem: "https://img.freepik.com/premium-vector/online-tutoring-by-students-with-teacher-laptop-screen-illustration-concept_310941-82.jpg?w=1800"
                 },
             ]);
 
