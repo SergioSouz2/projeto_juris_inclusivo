@@ -5,10 +5,9 @@ import { supabase } from "../../../services/supabaseClient";
 import { CardVagas } from "../../../components/CardVagas/CardVagas";
 import { ListaHorizontal } from "../../../components/ListaHorizontal/ListaHorizontal";
 import { CardLancamento } from "../../../components/CardLancamento/CardLancamento";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useUserData from "../../../hook/useUserData";
-import { deleteVaga, getAllVagas } from "../../../services/VagasService";
-import { Alert } from "@mui/material";
+import { deleteVaga, getAllVagas, updateVaga } from "../../../services/VagasService";
 import { Footer } from "../../../components/Footer/Footer";
 
 
@@ -32,6 +31,7 @@ interface VagasProps {
 
 
 export function VagasScreen() {
+  const navigate = useNavigate()
 
   const [vagas, setVagas] = useState<VagasProps[]>([]);
   const fetchVagas = async () => {
@@ -44,9 +44,6 @@ export function VagasScreen() {
   };
 
 
-  function onEditarClick() {
-
-  }
 
   async function onExcluirClick(vagaId: string) {
     const resultDel = await deleteVaga(vagaId)
@@ -64,22 +61,74 @@ export function VagasScreen() {
 
 
   return (
-    <div className="w-screen overflow-x-hidden"> {/* Impede o scroll horizontal */}
+    <div className="min-h-screen flex flex-col"> {/* Impede o scroll horizontal */}
       <Navbar />
-      <div className="flex flex-wrap"> {/* Flexbox que se ajusta responsivamente */}
-        <div className="flex-shrink-0 w-1/4">
-          <Menu /> {/* Menu com largura fixa, ajustando para a tela */}
+      <div className="flex justify-end mr-10 ">
+        <button className="px-4 py-1 rounded-md border border-primary bg-primaryPurple hover:bg-primary hover:text-white text-primary">
+          <Link to="/vagas/adicionar">Adiconar</Link>
+        </button>
+      </div>
+      <div className="flex flex-1"> {/* Flexbox que se ajusta responsivamente */}
+        <div className="w-[300px] min-h-screen bg-gray-200">
+          <div className=" px-4">
+            <input
+              id="search"
+              type="text"
+              placeholder="Digite para pesquisar..."
+              className="w-full px-4 py-2 bg-gray-700 text-white rounded-md border border-primaryPurple focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+          <Menu
+            title="Local"
+            items={[
+              "Presencial",
+              "Home Office",
+            ]}
+          />
+          <Menu
+            title="Estado"
+            items={[
+              "Brasília",
+              "Rio de Janeiro",
+              "Santa Catarina",
+            ]}
+          />
+
+          <Menu
+            title="Área Profissional"
+            items={[
+              "Contabilidade",
+              "Portuaria",
+              "Recursos Humanos",
+              "Comércio Exterior",
+              "Saúde",
+
+            ]}
+          />
+
+          <Menu
+            title="Escolaridade"
+            items={[
+              "Ensino Fundamental",
+              "Ensino Médio",
+              "Graduação",
+              "Ensino Técnico",
+              "Pós-Graduação",
+              "MBA",
+              "Mestrado",
+              "Doutorado",
+
+            ]}
+          />
+
+
         </div>
 
-        <div className="flex-1 flex-col items-center w-3/4 px-6 ">
+        <div className="flex-col items-center w-3/4 px-6 ">
           <h2 className="text-primary text-left mb-7 font-bold text-xl">
             {vagas.length} Vagas para PCD encontradas
           </h2>
-          <div className="flex justify-end mr-10 mb-10">
-            <button className="px-4 py-1 rounded-md border border-primary bg-primaryPurple hover:bg-primary hover:text-white text-primary">
-              <Link to="/vagas/adicionar">Adiconar</Link>
-            </button>
-          </div>
+
 
 
           <ListaHorizontal>
@@ -90,11 +139,12 @@ export function VagasScreen() {
                 descricao={vaga.descricao}
                 imagem={vaga.imagem}
                 onpres={() => { }} // Função chamada quando um curso é selecionado
+                button="Visualizar"
               />
             ))}
           </ListaHorizontal>
 
-          <h2 className="text-primary text-left mb-7 font-bold text-xl">
+          <h2 className="text-primary text-left mb-7 font-bold text-xl mt-5">
             Inclusão começa com oportunidade
           </h2>
 
@@ -111,7 +161,7 @@ export function VagasScreen() {
               exclusividade={vaga.exclusividade}
               tipo={vaga.tipo}
               visible={visible}
-              onEditarClick={onEditarClick}
+              onEditarClick={() => navigate(`/vagas/adicionar/${vaga.id}`)}
               onExcluirClick={() => onExcluirClick(vaga.id)}
             />
 

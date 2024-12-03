@@ -1,6 +1,16 @@
 import { Link } from "react-router-dom";
+import { supabase } from "../../services/supabaseClient";
 
 export function Navbar() {
+
+
+  async function onClose() {
+    let { error } = await supabase.auth.signOut()
+
+
+  }
+
+
   return (
     <nav className="w-full  px-8 sm:px-16 lg:px-28 py-4">
       <div className="flex justify-between items-center">
@@ -16,17 +26,9 @@ export function Navbar() {
                 Direito em Foco
               </p>
             </Link>
-            ;
+
           </li>
-          <li>
-            <Link to={"/forum"}>
-              <p
-                className="text-primary hover:text-primaryPurple font-bold"
-              >
-                Fóruns Jurídicos
-              </p>
-            </Link>
-          </li>
+
           <li>
             <Link to={"/vagas"}>
               <p
@@ -44,6 +46,15 @@ export function Navbar() {
                 Cursos para PCD
               </p>
             </Link>
+          </li>
+
+          <li>
+            <button
+              onClick={onClose}
+              className="text-primary hover:text-primaryPurple font-bold"
+            >
+              <Link to="/">Sair</Link>
+            </button>
           </li>
         </ul>
       </div>

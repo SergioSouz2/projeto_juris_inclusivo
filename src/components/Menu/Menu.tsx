@@ -1,74 +1,45 @@
 import React from "react";
 
+interface MenuProps {
+    title?: string;
+    items: [
+        item1?: string,
+        item2?: string,
+        item3?: string,
+        item4?: string,
+        item5?: string,
+        item6?: string,
+        item7?: string,
+        item8?: string,
+    ];
+}
 
 
-export function Menu() {
+
+export function Menu({ items, title }: MenuProps) {
     return (
-        <div className="p-7">
-            <div className="mb-6">
-                <input
-                    id="search"
-                    type="text"
-                    placeholder="Digite para pesquisar..."
-                    className="w-full px-4 py-2 bg-gray-700 text-white rounded-md border border-primaryPurple focus:outline-none focus:ring-2 focus:ring-primary"
-                />
-            </div>
-            <h2 className="text-xl font-semibold mb-6 text-primary">Método de Aprendizagem</h2>
+        <div className="px-4 pt-7">
+
+            <h2 className="text-xl font-semibold mb-2 text-primary">{title}</h2>
 
             <div>
                 <div className="space-y-4">
-                    <div className="flex items-center">
-                        <input
-                            type="checkbox"
-                            id="Bootcamp "
-                            className="h-4 w-4 text-blue-500 border-gray-300 rounded"
-                        />
-                        <label htmlFor="Bootcamp" className="ml-2 text-sm font-medium text-black">
-                            Bootcamp
-                        </label>
-                    </div>
-                    <div className="flex items-center">
-                        <input
-                            type="checkbox"
-                            id="Formacao"
-                            className="h-4 w-4 text-blue-500 border-gray-300 rounded"
-                        />
-                        <label htmlFor="Formacao" className="ml-2 text-sm font-medium text-black">
-                            Formação
-                        </label>
-                    </div>
-                    <div className="flex items-center">
-                        <input
-                            type="checkbox"
-                            id="Aceleracao"
-                            className="h-4 w-4 text-blue-500 border-gray-300 rounded"
-                        />
-                        <label htmlFor="Aceleracao" className="ml-2 text-sm font-medium text-black">
-                            Aceleração
-                        </label>
-                    </div>
 
-                    <div className="flex items-center">
-                        <input
-                            type="checkbox"
-                            id="Curso"
-                            className="h-4 w-4 text-blue-500 border-gray-300 rounded"
-                        />
-                        <label htmlFor="Curso" className="ml-2 text-sm font-medium text-black">
-                            Curso
-                        </label>
-                    </div>
+                    {
+                        items.map((item) => (
+                            <div className="flex items-center">
+                                <input
+                                    type="checkbox"
+                                    id="Bootcamp "
+                                    className="h-4 w-4 text-blue-500 border-gray-300 rounded"
+                                />
+                                <label htmlFor="Bootcamp" className="ml-2 text-sm font-medium text-black">
+                                    {item}
+                                </label>
+                            </div>
 
-                    <div className="flex items-center">
-                        <input
-                            type="checkbox"
-                            id="Mentoria"
-                            className="h-4 w-4 text-blue-500 border-gray-300 rounded"
-                        />
-                        <label htmlFor="Mentoria" className="ml-2 text-sm font-medium text-black">
-                            Mentoria
-                        </label>
-                    </div>
+                        ))
+                    }
                 </div>
             </div>
         </div>

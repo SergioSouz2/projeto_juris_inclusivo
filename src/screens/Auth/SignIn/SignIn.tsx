@@ -79,16 +79,25 @@ export function SignInPage() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen relative ">
-      <div className="flex flex-col items-center justify-center w-1/4 z-10 p-4">
-        <Card
-          email={email}
-          password={password}
-          onChange={handleChange}
-          onSubmit={handleSubmit}
-        />
-      </div>
-      <div className="bg-primary w-full h-1/2 absolute bottom-0"></div>
+    <div className="flex flex-col items-center justify-center h-screen relative">
+      {/* <div className="flex  items-center justify-center">
+       
+      </div> */}
+      <div className=" w-full h-1/2  bottom-0"></div>
+      <div className="bg-primary w-full h-1/2  bottom-0"></div>
+
+
+      <Card
+        email={email}
+        password={password}
+        onChange={handleChange}
+        onSubmit={handleSubmit}
+      />
+
     </div>
   );
 }
+
+
+
+//

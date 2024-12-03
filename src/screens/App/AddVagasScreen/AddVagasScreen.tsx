@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useForm } from 'react-hook-form';
-import { AddVagasForm } from "../../../services/VagasService";
-import { useNavigate } from "react-router-dom";
+import { AddVagasForm, updateVaga } from "../../../services/VagasService";
+import { useNavigate, useParams } from "react-router-dom";
+import { updateFormData } from "../../../services/CursoService";
 
 
 
@@ -22,17 +23,40 @@ export interface FormData {
 export function AddVagasScreen() {
 
     const navigate = useNavigate();
+    const { id } = useParams();
+    console.log(id);
+
 
     const [formData, setFormData] = useState<FormData | null>(null);
 
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
 
     const handleFormSubmit = async (data: FormData) => {
-        setFormData(data); // Atualiza o estado com os dados do formulário
-        const insertedData = await AddVagasForm(data); // Chama a função para adicionar no Supabase
-        navigate('/vagas', { replace: true });
+        // Atualiza o estado com os dados do formulário
+        setFormData(data);
 
+        // Se `id` não for definido, significa que estamos criando uma nova vaga
+        if (!id) {
+            const insertedData = await AddVagasForm(data); // Função para adicionar no Supabase
+            if (insertedData) {
+                console.log("Vaga adicionada com sucesso", insertedData);
+            } else {
+                console.error("Erro ao adicionar vaga");
+            }
+        } else {
+            // Caso contrário, estamos atualizando a vaga existente
+            const updateData = await updateVaga(id, data); // Atualiza a vaga no Supabase
+            if (updateData) {
+                console.log("Vaga atualizada com sucesso", formData);
+            } else {
+                console.error("Erro ao atualizar vaga");
+            }
+        }
+
+        // Redireciona para a página de vagas
+        navigate('/vagas', { replace: true });
     };
+
 
 
     return (

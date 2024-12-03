@@ -10,14 +10,14 @@ interface SignInProps {
 
 export function Card({ email, password, onChange, onSubmit }: SignInProps) {
   return (
-    <div className="h-5/6">
+    <div className="absolute z-10">
       <div className="bg-primary rounded-t-lg flex items-center justify-center">
         <h1 className="text-3xl font-bold text-white mt-4 mb-4">
           JurisInclusivo
         </h1>
       </div>
       <div className="bg-white flex flex-col items-center rounded-b-lg p-4">
-        <h2 className="mt-8 text-xl font-semibold text-primary mb-6">Login</h2>
+        <h2 className="mt-2 text-xl font-semibold text-primary mb-2">Login</h2>
 
         <div className="px-8">
           <button className="bg-blue-600 text-white px-4 py-2 rounded mb-2 w-full">

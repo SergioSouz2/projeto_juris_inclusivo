@@ -27,7 +27,7 @@ export function Card({
         <h1 className="text-3xl font-bold text-white mt-4 mb-4">JurisInclusivo</h1>
       </div>
       <div className="bg-white flex flex-col items-center rounded-b-lg p-4">
-        <h2 className="mt-8 text-xl font-semibold text-primary mb-6">Cadastre-se</h2>
+        <h2 className="mt-2 text-xl font-semibold text-primary mb-2">Cadastre-se</h2>
         <form onSubmit={onSubmit} className="w-full">
           <div className="mb-4">
             <label className=" text-left block text-gray-700">Nome Completo:</label>
@@ -37,7 +37,7 @@ export function Card({
               value={fullName}
               onChange={onChange}
               placeholder="Insira seu nome completo"
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+              className="mt-1 block w-full px-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
               required
             />
           </div>
@@ -49,7 +49,7 @@ export function Card({
               value={phone}
               onChange={onChange}
               placeholder="Insira seu telefone"
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+              className="mt-1 block w-full px-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
               required
             />
           </div>
@@ -61,7 +61,7 @@ export function Card({
               value={email}
               onChange={onChange}
               placeholder="Insira seu e-mail"
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+              className="mt-1 block w-full px-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
               required
             />
           </div>
@@ -73,7 +73,7 @@ export function Card({
               value={password}
               onChange={onChange}
               placeholder="Insira sua senha"
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+              className="mt-1 block w-full px-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
               required
             />
           </div>
@@ -85,7 +85,7 @@ export function Card({
               value={confirmPassword}
               onChange={onChange}
               placeholder="Confirme sua senha"
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+              className="mt-1 block w-full px-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
               required
             />
           </div>

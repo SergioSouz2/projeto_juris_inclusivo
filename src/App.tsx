@@ -11,7 +11,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ForgotPasswordScreen } from "./screens/Auth/ForgotPasswordScreen/ForgotPasswordScreen";
 import { CursoScreen } from "./screens/App/CursoScreen/CursoScreen";
 import { VagasScreen } from "./screens/App/VagasScreen/VagasScreen";
-import { ForumJuridicoScreen } from "./screens/App/ForumJuridicoScreen/ForumJuridicoScreen";
 import { DireitoFocoScreen } from "./screens/App/DireitoFocoScreen/DireitoFocoScreen";
 import { AddCursoScreen } from "./screens/App/AddCursoScreen/AddCursoScreen";
 import { AddVagasScreen } from "./screens/App/AddVagasScreen/AddVagasScreen";
@@ -27,11 +26,14 @@ function App() {
           <Route path="/home" element={<HomePage />} />
           <Route path="/recuperar" element={<ForgotPasswordScreen />} />
           <Route path="/topico" element={<DireitoFocoScreen />} />
-          <Route path="/forum" element={<ForumJuridicoScreen />} />
           <Route path="/vagas" element={<VagasScreen />} />
           <Route path="/curso" element={<CursoScreen />} />
           <Route path="/curso/adicionar" element={<AddCursoScreen />} />
           <Route path="/vagas/adicionar" element={<AddVagasScreen />} />
+          <Route path="/vagas/adicionar/:id?" element={<AddVagasScreen />} />
+
+
+
 
         </Routes>
       </BrowserRouter>

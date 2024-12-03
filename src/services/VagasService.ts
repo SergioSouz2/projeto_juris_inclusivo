@@ -81,21 +81,34 @@ export const getVagaById = async (vagaId: number) => {
 
 
 
-export const updateVaga = async (vagaId: number, updatedData: {
-    title?: string;
-    description?: string;
-    category?: string;
-    localizacao?: string;
-    valor?: string;
-    tipo?: string;
-    exclusividade?: string;
-    escolaridade?: string;
-    area_profissional?: string;
+export const updateVaga = async (vagaId: string, updatedData: {
+    title: string;
+    description: string;
+    category: string;
+    localizacao: string;
+    valor: string;
+    tipo: string;
+    exclusividade: string;
+    escolaridade: string;
+    area_profissional: string;
 }) => {
     try {
         const { data, error } = await supabase
             .from('vagas')
-            .update(updatedData) // Atualiza os dados fornecidos
+            .update([
+                {
+                    categoria: updatedData.category,
+                    titulo: updatedData.title,
+                    descricao: updatedData.description,
+                    imagem: "https://gospelminas.com/wp-content/uploads/2022/08/vaga2.jpg",
+                    localizacao: updatedData.localizacao,
+                    valor: updatedData.valor,
+                    tipo: updatedData.tipo,
+                    exclusividade: updatedData.exclusividade,
+                    escolaridade: updatedData.escolaridade,
+                    area_profissional: updatedData.area_profissional
+                }
+            ]) // Atualiza os dados fornecidos
             .eq('id', vagaId); // Encontra a vaga pela chave primária (ID)
 
         if (error) throw error;

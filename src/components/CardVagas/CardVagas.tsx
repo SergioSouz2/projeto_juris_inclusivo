@@ -12,7 +12,7 @@ interface props {
     tipo: string | undefined;
     exclusividade: string | undefined;
     visible: boolean | undefined;
-    onEditarClick: () => void;
+    onEditarClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
     onExcluirClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
@@ -35,7 +35,7 @@ export function CardVagas({
 
 
     return (
-        <div className=" h-64 mb-10 flex ">
+        <div className=" h-64 mb-10 flex bg">
             <img className="rounded-l w-1/4 h-auto object-cover" src={imagem} alt={titulo} />
 
             <div className="bg-primaryPurple  rounded-r  w-full flex flex-col justify-between py-4">

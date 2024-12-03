@@ -51,13 +51,11 @@ export function SignUpPage() {
     setErrorMessage(null); // Limpando a mensagem de erro
 
     // Enviando dados de registro para o Supabase
-    const { data, error } = await await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signUp({
       email: email,
       password: password,
 
     });
-
-
 
     setLoading(false);
 
